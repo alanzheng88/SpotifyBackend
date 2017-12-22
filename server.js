@@ -1,5 +1,4 @@
 'use strict'
-
 const express = require('express');
 const app = module.exports = express();
 const env = require('./config/index').environmentConfig;
@@ -20,6 +19,15 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/login', loginRoutes);
 app.use('/api/v1/playlist', playlistRoutes);
+
+// main error handler
+app.use((err, req, res, next) => {
+	console.log('there was an error triggered Alan!');
+	if (err.statusCode && err.message) {
+		return res.status(err.statusCode).send(err.message);
+	}
+	return res.status(500).send('You messed up somewhere Alan!');
+});
 
 app.all('*', (req, res) => {
 	res.sendStatus(404);

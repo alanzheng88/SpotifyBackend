@@ -1,10 +1,10 @@
-const Spotify = require('../spotify/index');
+const spotify = require('../spotify/index');
 const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
 	console.log('Logging in...');
-	let spotifyAuthorizeUrl = Spotify.getAuthorizeUrl();
+	let spotifyAuthorizeUrl = spotify.getAuthorizeUrl();
 	console.log(spotifyAuthorizeUrl);
 	res.redirect(spotifyAuthorizeUrl);
 });
@@ -14,6 +14,8 @@ router.get('/callback', (req, res) => {
 	console.log('code is: ' + req.query.code);
 	let accessTokenCallback = (error, response, body) => {
 		let jsonBody = JSON.parse(body);
+		console.log(`access token: ${jsonBody.access_token}`);
+		console.log(`refresh token: ${jsonBody.refresh_token}`);
 		let auth = {
 			'access_token': jsonBody.access_token,
 			'refresh_token': jsonBody.refresh_token
@@ -28,7 +30,7 @@ router.get('/callback', (req, res) => {
 		});
 		res.sendStatus(200);
 	}
-	Spotify.getAccessToken(req.query.code, accessTokenCallback);
+	spotify.getAccessToken(req.query.code, accessTokenCallback);
 });
 
 module.exports = router;

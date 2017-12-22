@@ -8,7 +8,11 @@
 // -> https://beta.developer.spotify.com/console/get-artist/
 
 class Playlist {
-	constructor() {
+	constructor(name) {
+		this.name = name;
+	}
+
+	addSongs(query) {
 
 	}
 

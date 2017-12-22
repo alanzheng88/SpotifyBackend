@@ -7,7 +7,8 @@
     "node": ">=9.2"
   },
   "scripts": {
-    "start": "export NODE_ENV=dev && nodemon server.js",
+    "start": "source app-env.sh && nodemon server.js",
+    "debug": "source app-env.sh && nodemon --inspect-brk server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,7 @@
   },
   "homepage": "https://github.com/alanzheng88/SpotifyBackend#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "btoa": "^1.1.2",
     "express": "^4.16.2",
     "querystring": "^0.2.0",
