@@ -1,4 +1,4 @@
-const spotify = require('../spotify/index')
+const spotify = require('../ext/index').spotifyApi;
 
 
 function search(accessToken, searchString, callback) {

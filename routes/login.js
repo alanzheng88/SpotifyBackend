@@ -1,4 +1,4 @@
-const spotify = require('../spotify/index');
+const spotify = require('../ext/index').spotifyApi;
 const express = require('express');
 const router = express.Router();
 

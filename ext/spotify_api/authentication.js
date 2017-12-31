@@ -1,4 +1,4 @@
-const env = require('../config/index').environmentConfig;
+const env = require('../../config/index').environmentConfig;
 const request = require('request');
 const qs = require('querystring');
 const btoa = require('btoa');

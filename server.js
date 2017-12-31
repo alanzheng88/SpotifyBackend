@@ -1,10 +1,28 @@
 'use strict'
 const express = require('express');
+const qs = require('querystring');
 const app = module.exports = express();
 const env = require('./config/index').environmentConfig;
 
 const hostname = env.APP.HOSTNAME;
 const port = env.APP.PORT;
+
+
+function getValidAccessToken(req, res, next) {
+	let cookie = req.headers.cookie;
+	let tokens;
+	if (cookie) {
+		tokens = JSON.parse(qs.parse(cookie).auth);
+	}
+	if (!tokens) {
+		return next({
+			statusCode: 401,
+			message: 'User is not authenticated. Please log in.'
+		});
+	}
+	res.locals.tokens = tokens;
+	next();
+}
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}`);
@@ -18,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/login', loginRoutes);
+app.use(getValidAccessToken);
 app.use('/api/v1/playlist', playlistRoutes);
 
 // main error handler

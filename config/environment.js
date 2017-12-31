@@ -10,7 +10,7 @@ const dev = {
 			'REDIRECT_URI': process.env.SPOTIFY_REDIRECT_URI,
 			'CLIENT_ID': process.env.SPOTIFY_CLIENT_ID,
 			'CLIENT_SECRET': process.env.SPOTIFY_CLIENT_SECRET,
-			'SCOPE': process.env.SPOTIFY_SCOPE
+			'SCOPE': 'user-read-private user-read-email'
 		}
 	},
 	DB: {}
