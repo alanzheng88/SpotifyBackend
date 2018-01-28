@@ -1,6 +1,7 @@
 const spotifyApi = require('./spotify_api/index');
-// const googleApi = require('./google_api')
+const googleApi = require('./google_api/index');
 
 module.exports = {
-	spotifyApi
+	spotifyApi,
+	googleApi
 }

@@ -11,6 +11,9 @@ const dev = {
 			'CLIENT_ID': process.env.SPOTIFY_CLIENT_ID,
 			'CLIENT_SECRET': process.env.SPOTIFY_CLIENT_SECRET,
 			'SCOPE': 'user-read-private user-read-email'
+		},
+		'GOOGLE': {
+			'API_KEY': process.env.GOOGLE_API_KEY
 		}
 	},
 	DB: {}

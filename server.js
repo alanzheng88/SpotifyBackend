@@ -30,6 +30,7 @@ app.listen(port, hostname, () => {
 
 const loginRoutes = require('./routes/login');
 const playlistRoutes = require('./routes/playlist');
+const imageRoutes = require('./routes/image');
 
 app.use((req, res, next) => {
 	next();
@@ -38,11 +39,13 @@ app.use((req, res, next) => {
 app.use('/api/v1/login', loginRoutes);
 app.use(getValidAccessToken);
 app.use('/api/v1/playlist', playlistRoutes);
+app.use('/api/v1/image', imageRoutes);
 
 // main error handler
 app.use((err, req, res, next) => {
 	console.log('there was an error triggered Alan!');
 	if (err.statusCode && err.message) {
+		console.error(err.message);
 		return res.status(err.statusCode).send(err.message);
 	}
 	return res.status(500).send('You messed up somewhere Alan!');
